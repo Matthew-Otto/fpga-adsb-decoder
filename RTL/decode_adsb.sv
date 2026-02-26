@@ -19,10 +19,6 @@ module decode_adsb (
     logic [31:0] noise_level;
     logic [31:0] threshold;
 
-    logic [20:0] sum_pulse;
-    logic [20:0] sum_space;
-
-    localparam int PREAMBLE_MATCH_THRESHOLD = 3;
     logic preamble_match;
 
     // =================================================
@@ -131,8 +127,10 @@ module decode_adsb (
         else if (valid_sample) 
             valid_decode_window <= {valid_decode_window[0],1'b1};
 
-        if (valid_sample) 
-            decode_window <= {decode_window[0],sample};
+        if (valid_sample) begin
+            decode_window[0] <= sample;
+            decode_window[1] <= decode_window[0];
+        end
     end
 
 
