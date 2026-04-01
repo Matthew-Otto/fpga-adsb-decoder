@@ -116,7 +116,7 @@ The following dependencies are required for simulation:
 
 ## Difficulties and debugging process
 
-Initially, signals would successfully decode in simulation, but not on the FPGA. I suspected the issue was the dodgy connection between the SDR and FPGA.
+Initially, signals would successfully decode in simulation, but not on the FPGA. I suspected the issue was the dodgy connection between the SDR and FPGA:
 
 ![picture of the hardware](figures/hardware.jpg)
 
@@ -128,9 +128,9 @@ For reference, here is a plot of the same signal with samples captured directly 
 
 ![reference samples](figures/Reference_plot.png)
 
-It appears that some bits of the I sample bus were not being latched correctly. I played around with adjusting the phase of the incoming sample clock, however eventually I realized the the open-source toolchain I was using wasn't respecting my constrains. Instead, I had to force the I/Q sample bus into the hard IO buffer by instantiating Gowin IDDR primitives:
+It appears that some bits of the I sample bus were not being latched correctly. I played around with adjusting the phase of the incoming sample clock, however eventually I realized the the open-source toolchain I was using wasn't respecting my constrains. Instead, I had to force the I/Q sample bus into the hard IO buffers by instantiating Gowin IDDR primitives:
 
-```
+```verilog
 generate
 for (i = 0; i < 8; i = i + 1) begin : IO_buffer_gen
     IDDR iddr_inst_i (
