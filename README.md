@@ -128,7 +128,7 @@ For reference, here is a plot of the same signal with samples captured directly 
 
 ![reference samples](figures/Reference_plot.png)
 
-It appears that some bits of the I sample bus were not being latched correctly. I played around with adjusting the phase of the incoming sample clock, however eventually I realized the the open-source toolchain I was using wasn't respecting my constrains. Instead, I had to force the I/Q sample bus to latch in the IO buffer by instantiating Gowin IDDR primitives:
+It appears that some bits of the I sample bus were not being latched correctly. I played around with adjusting the phase of the incoming sample clock, however eventually I realized the the open-source toolchain I was using wasn't respecting my constrains. Instead, I had to force the I/Q sample bus into the hard IO buffer by instantiating Gowin IDDR primitives:
 
 ```
 generate
