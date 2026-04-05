@@ -4,7 +4,7 @@ Real-time 1090MHz Mode-S demodulation and decoding on hardware.
 
 This repo contains gateware used to receive and decode ADS-B messages on a Gowin Tang Nano 20K FPGA.
 
-This project is documented in more detail on [my website](https://matthew-otto.github.io/projects/fpga-adsb/).
+This project is documented in more detail on [my website](https://matthew-otto.github.io/projects/2026/03/16/decoding-ads-b-on-fpga/).
 
 ## Demo
 
